@@ -25,7 +25,7 @@ public class SwaggerConfig {
 		logger.debug("Configuring Swagger for Application...!!!");
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
-				.paths(PathSelectors.ant("/api/*"))
+				.paths(PathSelectors.ant("/***"))
 				.apis(RequestHandlerSelectors.basePackage("com.app"))
 				.build()
 				.apiInfo(apiInfo());
