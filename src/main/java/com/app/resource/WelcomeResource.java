@@ -14,7 +14,7 @@ public class WelcomeResource {
 	
 	private final Logger logger = LoggerFactory.getLogger(WelcomeResource.class);
 	
-	@GetMapping(value = "/hello")
+	@GetMapping(value = "/welcome")
 	@ApiOperation(value = "Gets all user groups",notes = "Greeting for testing", response = String.class)
 	public String greeting() {
 		logger.info("Welcome to Dashboard...!!!");

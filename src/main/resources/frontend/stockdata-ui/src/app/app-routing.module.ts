@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './auth.guard';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 
 const routes: Routes = [
@@ -11,8 +13,14 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'welcome',
+    component: WelcomeComponent,
+    canActivate : [AuthGuard]
+  },
+  {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    
   },
   {
     path: 'register',
