@@ -7,6 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,7 +22,9 @@ import com.app.config.services.JwtUserDetailsService;
 
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
-
+	
+	private final Logger logger = LoggerFactory.getLogger(JwtRequestFilter.class);
+	
     @Autowired
     private JwtUserDetailsService userDetailsService;
 
@@ -30,7 +34,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
-
+    		
+    	logger.debug("Authenticating Authorization Header...!");
         final String authorizationHeader = request.getHeader("Authorization");
 
         String username = null;
@@ -41,13 +46,11 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             username = jwtUtil.extractUsername(jwt);
         }
 
-
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
 
             if (jwtUtil.validateToken(jwt, userDetails)) {
-
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities());
                 usernamePasswordAuthenticationToken
@@ -56,6 +59,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             }
         }
         chain.doFilter(request, response);
+        logger.debug("Successfully Authenticated Authorization Header...!");
     }
+    
+    
 
 }

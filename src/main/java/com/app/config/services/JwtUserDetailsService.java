@@ -2,6 +2,9 @@ package com.app.config.services;
 
 import java.util.ArrayList;
 
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,7 +17,7 @@ import com.app.repository.UserRepository;
 
 @Service
 public class JwtUserDetailsService implements UserDetailsService{
-
+	private final Logger logger = LoggerFactory.getLogger(JwtUserDetailsService.class);
 	@Autowired
 	private UserRepository userRepository;
 	
@@ -31,6 +34,16 @@ public class JwtUserDetailsService implements UserDetailsService{
 	}
 	
 	public User save(User user) {
+		if(null == user) {
+			logger.error("User should not be Empty..!!!");
+			throw new IllegalArgumentException("User should not be Empty..!!!");
+		}
+		
+		if(StringUtils.isBlank(user.getName())){
+			logger.error("Name should not be Empty..!!!");
+			throw new IllegalArgumentException("Name should not be Empty..!!!");
+		}
+		
 		if(null != user) {
 			user.setPassword(bcryptEncoder.encode(user.getPassword()));
 		}
