@@ -1,5 +1,6 @@
 import { Component, OnInit , ViewChild} from '@angular/core';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,9 +13,14 @@ export class RegisterComponent implements OnInit {
 
   showMsg: boolean = false;
   registerUserData = {}
-  constructor(private _auth:AuthService) { }
+  constructor(private _auth:AuthService,
+    private _router : Router) { }
 
   ngOnInit() {
+  }
+
+  routeLogin(){
+    this._router.navigate(['/login']);
   }
 
   registerUser(){
@@ -23,7 +29,6 @@ export class RegisterComponent implements OnInit {
       res => {
         this.showMsg = true;
         this.formValues.resetForm();
-        console.log(res);
       },
       err => console.log(err)
     )
