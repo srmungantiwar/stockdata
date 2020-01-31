@@ -4,52 +4,76 @@
         <span class="anchor" id="formLogin"></span>
         
         <!-- form card login -->
-        <div class="card rounded-0">
+        <div class="card rounded shadow-lg bg-white">
           <div class="card-header text-white bg-secondary">
-            <h3 class="mb-0 ">Registration</h3>
+            <h5 class="card-title">Register for an Account</h5>
           </div>
           <div class="card-body">
             <form class="form" #userForm="ngForm">
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" [(ngModel)]="registerUserData.name" #name="ngModel" [class.is-invalid]="name.invalid && name.touched" name="name" class="form-control rounded-0" required>
+                  <div class="input-group mb-3">
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="fa fa-id-card"></i></span>
+                    </div>
+                    <input type="text" [(ngModel)]="registerUserData.name" #name="ngModel" [class.is-invalid]="name.invalid && name.touched" name="name" class="form-control rounded-0" placeholder="Full Name" required>
                     <div *ngIf="name.errors && (name.invalid && name.touched)">
                       <small class="text-danger" *ngIf="name.errors.required">Name is required!</small>
                     </div>
+                  </div>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" [(ngModel)]="registerUserData.email" pattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #email="ngModel" [class.is-invalid]="email.invalid && email.touched" name="email" class="form-control rounded-0" required>
+                  <div class="input-group mb-3">
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="fa fa-envelope-open"></i></span>
+                    </div>
+                    <input type="email" [(ngModel)]="registerUserData.email" pattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #email="ngModel" [class.is-invalid]="email.invalid && email.touched" name="email" class="form-control rounded-0" placeholder="Email Address" required>
                     <div *ngIf="email.errors && (email.invalid && email.touched)">
                       <small class="text-danger" *ngIf="email.errors.required">Email Address is required!</small>
                       <small class="text-danger" *ngIf="email.errors.pattern">Invalid Email Address Given!</small>
                     </div>
+                  </div>
                 </div>
                 <div class="form-group">
-                    <label for="mobile">Mobile</label>
-                    <input type="tel" [(ngModel)]="registerUserData.mobile" pattern = "^\d{10}$" #mobile="ngModel" [class.is-invalid]="mobile.invalid && mobile.touched" name="mobile" class="form-control rounded-0" required>
+                  <div class="input-group mb-3">
+                    <div class="input-group-append">
+                      <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                    </div>
+                    <input type="tel" [(ngModel)]="registerUserData.mobile" pattern = "^\d{10}$" #mobile="ngModel" [class.is-invalid]="mobile.invalid && mobile.touched" name="mobile" class="form-control rounded-0" placeholder="Mobile Number" required>
                     <div *ngIf="mobile.errors && (mobile.invalid && mobile.touched)">
                       <small class="text-danger" *ngIf="mobile.errors.required">Phone number is required!</small>
                       <small class="text-danger" *ngIf="mobile.errors.pattern">Phone number should be of 10 digits!</small>
                     </div> 
+                  </div>
                 </div>  
               <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" [(ngModel)]="registerUserData.username"  name="username" #username="ngModel" [class.is-invalid]="username.invalid && username.touched" class="form-control rounded-0" required>
+                <div class="input-group mb-3">
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                  </div>
+                <input type="text" [(ngModel)]="registerUserData.username"  name="username" #username="ngModel" [class.is-invalid]="username.invalid && username.touched" class="form-control rounded-0" placeholder="UserName" required>
                 <div *ngIf="username.errors && (username.invalid && username.touched)">
                   <small class="text-danger" *ngIf="username.errors.required">UserName is required!</small>
                 </div>
-              </div>
-              <div class="form-group">
-                <label>Password</label>
-                <input type="password" [(ngModel)]="registerUserData.password" name="password" #password="ngModel" [class.is-invalid]="password.invalid && password.touched" class="form-control rounded-0"  required>
-                <div *ngIf="password.errors && (password.invalid && password.touched)">
-                  <small class="text-danger" *ngIf="password.errors.required">Password is required!</small>
                 </div>
               </div>
               <div class="form-group">
-                <label>Retype Password</label>
-                <input type="password" [(ngModel)]="registerUserData.cpassword" name="cpassword" #password="ngModel" class="form-control rounded-0" required>
+                <div class="input-group mb-3">
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-key"></i></span>
+                  </div>
+                <input type="password" [(ngModel)]="registerUserData.password" name="password" #password="ngModel" [class.is-invalid]="password.invalid && password.touched" class="form-control rounded-0" placeholder="Password"  required>
+                <div *ngIf="password.errors && (password.invalid && password.touched)">
+                  <small class="text-danger" *ngIf="password.errors.required">Password is required!</small>
+                </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group mb-3">
+                  <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-key"></i></span>
+                  </div>
+                <input type="password" [(ngModel)]="registerUserData.cpassword" name="cpassword" #cpassword="ngModel" class="form-control rounded-0" placeholder="Retype Password" required>
+              </div>
               </div>
               <button type="button" [disabled]="userForm.form.invalid" (click)="registerUser()" class="btn btn-success float-right">Register</button>
               <div class="row"  *ngIf="showMsg">
@@ -64,9 +88,6 @@
           <!--/card-block-->
         </div>
         <!-- /form card login -->
-  
       </div>
-  
-  
     </div>
   </div>

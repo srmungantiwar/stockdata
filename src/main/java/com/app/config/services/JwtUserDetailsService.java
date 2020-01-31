@@ -26,6 +26,7 @@ public class JwtUserDetailsService implements UserDetailsService{
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		logger.debug("Getting User with Name:{}",username);
 		User user = userRepository.findByUsername(username);
 		if (user == null) {
 			throw new UsernameNotFoundException("User not found with username: " + username);
@@ -39,14 +40,19 @@ public class JwtUserDetailsService implements UserDetailsService{
 			throw new IllegalArgumentException("User should not be Empty..!!!");
 		}
 		
+		logger.debug("Persisting User:{}",user.getUsername());
+		
 		if(StringUtils.isBlank(user.getName())){
 			logger.error("Name should not be Empty..!!!");
 			throw new IllegalArgumentException("Name should not be Empty..!!!");
 		}
 		
-		if(null != user) {
-			user.setPassword(bcryptEncoder.encode(user.getPassword()));
+		if(StringUtils.isBlank(user.getPassword())){
+			logger.error("Password should not be Empty..!!!");
+			throw new IllegalArgumentException("Password should not be Empty..!!!");
 		}
+		
+		user.setPassword(bcryptEncoder.encode(user.getPassword()));
 		return userRepository.save(user);
 	}
 }
