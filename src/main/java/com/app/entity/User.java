@@ -7,13 +7,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 @Entity
 @Table(name = "user")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	public Long getId() {
+		return id;
+	}
+
 	@Column
 	private String name;
 	

@@ -7,11 +7,16 @@ import { WelcomeService } from '../welcome.service';
   styleUrls: ['./welcome.component.scss']
 })
 export class WelcomeComponent implements OnInit {
+  currentUser : any;
 
   constructor(private _welcomeService : WelcomeService) { }
 
-  ngOnInit() {
-    this._welcomeService.greetUser();
+   ngOnInit() {   
+    this._welcomeService.getCurrentUser().subscribe((data : any) =>{
+       this.currentUser =  data;
+
+       console.log(JSON.stringify(this.currentUser));
+    });
   }
 
 }

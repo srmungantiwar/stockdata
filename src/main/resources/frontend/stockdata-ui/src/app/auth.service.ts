@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from "@angular/common/http";
+import { HttpClient, HttpHandler, HttpHeaders} from "@angular/common/http";
 import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
@@ -7,16 +7,17 @@ import { Router } from '@angular/router';
 export class AuthService {
   private _registerUrl = "http://localhost:8080/register";
   private _loginUrl = "http://localhost:8080/authenticate";
-
+  private _reqHeader = new HttpHeaders({'No-Auth':"true"});
+  
   constructor(private http : HttpClient,
      private _router : Router) { }
 
   registerUser(user){
-    return this.http.post<any>(this._registerUrl,user);
+    return this.http.post<any>(this._registerUrl,user, {headers : this._reqHeader});
   }
 
   loginUser(user){
-    return this.http.post<any>(this._loginUrl,user);
+    return this.http.post<any>(this._loginUrl,user, {headers : this._reqHeader});
   }
 
   loggedIn(){

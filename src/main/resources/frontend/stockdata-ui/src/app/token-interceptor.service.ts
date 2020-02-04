@@ -11,10 +11,11 @@ export class TokenInterceptorService implements HttpInterceptor{
 
   intercept(request, next){
     let authService = this.injector.get(AuthService);
-    console.log("request-url: "+request.url);
-    if(request.url === 'http://localhost:8080/authenticate' || request.url === 'http://localhost:8080/register'){
+    console.debug("Headers:"+request.headers);
+    if(request.headers.get("No-Auth") == "true"){
       return next.handle(request);
     }
+    
     let tokenizedRequest = request.clone({
       setHeaders : {
         Authorization : `Bearer ${authService.getToken()}`
