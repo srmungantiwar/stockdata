@@ -1,4 +1,4 @@
-<div class="py-5">
+<div class="py-5 container">
     <div class="row">
       <div class="col-md-6 mx-auto">
         <span class="anchor" id="formLogin"></span>
@@ -82,7 +82,9 @@
                       <strong>Registration Success!</strong> Please click here to <a (click)="routeLogin()" class="text-primary">Login</a>!.
                   </p>
                 </div>
+                
               </div>
+              <div class="row" *ngIf="!showMsg">Already have an account?  <a (click)="routeLogin()" class="text-primary">Login here</a></div>
             </form>
           </div>
           <!--/card-block-->

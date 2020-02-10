@@ -11,7 +11,6 @@ export class TokenInterceptorService implements HttpInterceptor{
 
   intercept(request, next){
     let authService = this.injector.get(AuthService);
-    console.debug("Headers:"+request.headers);
     if(request.headers.get("No-Auth") == "true"){
       return next.handle(request);
     }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WelcomeService } from '../welcome.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-welcome',
@@ -9,14 +10,16 @@ import { WelcomeService } from '../welcome.service';
 export class WelcomeComponent implements OnInit {
   currentUser : any;
 
-  constructor(private _welcomeService : WelcomeService) { }
+  constructor(private _welcomeService : WelcomeService, private _authService : AuthService) { }
 
    ngOnInit() {   
     this._welcomeService.getCurrentUser().subscribe((data : any) =>{
        this.currentUser =  data;
-
-       console.log(JSON.stringify(this.currentUser));
     });
+  }
+
+  getUser(){
+    return this.currentUser;
   }
 
 }

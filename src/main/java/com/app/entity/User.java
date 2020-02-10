@@ -1,11 +1,18 @@
 package com.app.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -15,27 +22,40 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false, updatable = false)
 	private Long id;
-	
-	public Long getId() {
-		return id;
-	}
 
-	@Column
+	@Column(name = "name")
+	@NotEmpty(message = "Please provide your Full Name")
 	private String name;
 	
 	@Column
 	private Long mobile;
 	
-	@Column
+	@Column(name = "email", nullable = false, unique = true)
+	@Email(message = "Please provide a valid e-mail")
+	@NotEmpty(message = "Please provide an e-mail")
 	private String email;
 	
-	@Column
+	@Column(name = "username", nullable = false, unique = true)
 	private String username;
+	
 	
 	@Column
 	private String password;
+	
+	@CreationTimestamp
+	@Column(name = "created_ts")
+    private Date createdTs;
+	
+	@UpdateTimestamp
+	@Column(name = "updated_ts")
+    private Date updatedTs;
 
+	public Long getId() {
+		return id;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -78,9 +98,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", mobile=" + mobile + ", email=" + email + ", username="
-				+ username + ", password=" + password + "]";
+		return "User [name=" + name + ", mobile=" + mobile + ", email=" + email + ", username=" + username
+				+ ", password=" + password + ", createdTs=" + createdTs + ", updatedTs=" + updatedTs + "]";
 	}
-	
-	
 }
