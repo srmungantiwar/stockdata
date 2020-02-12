@@ -29,7 +29,7 @@ public class User {
 	@NotEmpty(message = "Please provide your Full Name")
 	private String name;
 	
-	@Column
+	@Column(name = "mobile")
 	private Long mobile;
 	
 	@Column(name = "email", nullable = false, unique = true)
@@ -41,7 +41,7 @@ public class User {
 	private String username;
 	
 	
-	@Column
+	@Column(name = "password")
 	private String password;
 	
 	@CreationTimestamp

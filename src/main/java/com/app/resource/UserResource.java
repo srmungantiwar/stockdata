@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.config.services.JwtUserDetailsService;
 import com.app.entity.User;
 import com.app.service.UserService;
 
