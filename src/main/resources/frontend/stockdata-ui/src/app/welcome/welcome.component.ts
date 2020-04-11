@@ -18,7 +18,7 @@ export class WelcomeComponent implements OnInit {
     });
   }
 
-  getUser(){
+  public getUser(){
     return this.currentUser;
   }
 
