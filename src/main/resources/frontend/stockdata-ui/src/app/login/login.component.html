@@ -1,51 +1,42 @@
-<div class="py-5">
+<div class="container">
     <div class="row">
-      <div class="col-md-4 mx-auto">
-        <span class="anchor" id="formLogin"></span>
-  
+      <div class="col s12 m6 l6 mx-auto login-box">
         <!-- form card login -->
-        <div class="card rounded shadow-lg bg-white">
-          <div class="card-header text-white  bg-secondary">
-            <h5 class="card-title">Member Login</h5>
-          </div>
-          <div class="card-body">
+        <div class="card rounded">
+          <h5 class="card-panel center-align white-text teal lighten-2">
+            MEMBER LOGIN
+          </h5>
+          <div class="card-content">
             <form class="form" #loginForm="ngForm">
               <div class="form-group">
-                <div class="input-group mb-3">
-                  <div class="input-group-append">
-                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-                  </div>
-                  <input type="text"  [(ngModel)]="loginUserData.username" name="email" class="form-control input_user" value="" placeholder="username" required>
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">person</i>
+                  <input id="icon_prefix" type="text"  [(ngModel)]="loginUserData.username" name="email" class="form-control input_user" value="" placeholder="Email or Username" required>
                 </div>
               </div>
               <div class="form-group">
-                <div class="input-group mb-3">
-                  <div class="input-group-append">
-                    <span class="input-group-text"><i class="fas fa-key"></i></span>
-                  </div>
-                  <input type="password" [(ngModel)]="loginUserData.password" name="password" class="form-control input_pass" value="" placeholder="password" required>
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">vpn_key</i>
+                  <input id="icon_prefix" type="password" [(ngModel)]="loginUserData.password" name="password" class="form-control input_pass" value="" placeholder="Password" required>
                 </div>
               </div>
               <div class="form-group">
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="customControlInline">
-                  <label class="custom-control-label" for="customControlInline">Remember me</label>
-                </div>
+                <label class="center-align col s12">
+                  <input type="checkbox" />
+                  <span>Remember me</span>
+                </label>
               </div>
-              <div class="d-flex justify-content-center mt-3 login_container box-shadow">
-                <button type="button" [disabled]="loginForm.form.invalid" (click)="loginUser()" class="btn btn-success">Login</button>
+              <div class="input-field col s12 center-align">
+                <button type="submit" [disabled]="loginForm.form.invalid" (click)="loginUser()" class="waves-effect waves-light btn-small">Login</button>
               </div>
             </form>
-            <div class="mt-4">
-              <div class="d-flex justify-content-center links">
-                Don't have an account? <a (click)="registerRoute()" class="ml-2 text-primary">Sign Up</a>
-              </div>
-              <div class="d-flex justify-content-center links">
-                <a data-toggle="modal" data-target="#forgetPasswordModal" class="text-primary">Forgot your password?</a>
+            <div class="row ext-links">
+              <div class="col center-align s12">
+                <span class="margin medium-small col s6 m6 l6">Don't have an account? <a (click)="registerRoute()">Sign Up Here</a></span>
+                <span class="margin right-align medium-small col s5 m5 l5 modal-trigger"><a href="#forgetPasswordModal" class="modal-trigger">Forgot password?</a></span> 
               </div>
             </div>
           </div>
-          <!--/card-block-->
         </div>
         <!-- /form card login -->
       </div>
