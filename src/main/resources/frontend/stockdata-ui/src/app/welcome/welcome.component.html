@@ -1,135 +1,28 @@
-<nav *ngIf="_authService.loggedIn()" class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Stockdata</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div  class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/" routerLinkActive="active"></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/" routerLinkActive="active"></a>
-      </li>
-    </ul>
-    <ul class="navbar-nav float-right">     
-      <div style="cursor:pointer" *ngIf="_authService.loggedIn()" class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Welcome <span *ngIf="currentUser">{{currentUser.name }}</span>
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" data-toggle="modal" data-target="#updateUserModal">Edit Profile</a>
-          <a class="dropdown-item" data-toggle="modal" data-target="#updatePasswordModal">Change Password</a>
-          <a class="dropdown-item" style="cursor:pointer" (click)="_authService.logoutUser()">Logout</a>
-        </div>
-      </div>
+<!-- Dropdown Structure -->
+<ul id="profile-dropdown" class="dropdown-content">
+  <li><a href="#!">one</a></li>
+  <li><a href="#!">two</a></li>
+  <li class="divider"></li>
+  <li><a href="#!">three</a></li>
+</ul>
+<!-- Navbar -->
+<nav >
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo"><i class="material-icons">cloud</i> Personal Finance</a>
+    <ul class="right hide-on-med-and-down">
+      <!-- Profile Dropdown Trigger --> 
+      <li><a class="dropdown-trigger" data-target="profile-dropdown">Welcome <span *ngIf="currentUser">{{currentUser.name }}</span><i class="material-icons right">arrow_drop_down</i></a></li>
     </ul>
   </div>
 </nav>
+    <!-- Page Layout here -->
+    <div class="row">
+      <div class="col s3">
+        <app-left-sidebar></app-left-sidebar>
+      </div>
 
-
-<!--Welcome Page Content with Sidebar-->
-<div class="container-fluid">
-  <div class="row min-vh-100 flex-column flex-md-row">
-      <aside class="col-12 col-md-2 p-0 left-panel-bg flex-shrink-1">
-          <nav class="navbar navbar-expand navbar-dark left-panel-bg flex-md-column flex-row align-items-start py-2">
-              <div class="collapse navbar-collapse ">
-                  <app-left-sidebar></app-left-sidebar>
-              </div>
-          </nav>
-      </aside>
-      <main class="col bg-faded py-3 flex-grow-1">
+      <div class="col s9">
         <router-outlet></router-outlet>
-      </main>
-  </div>
-</div>
-<!--End of Welcome Page Content with Sidebar-->
-
-
-<div class="modal fade" id="updateUserModal" tabindex="-1" role="dialog" aria-labelledby="updateUserModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="updateUserModalLabel">Update Your Profile</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form class="form" #userForm="ngForm">
-            <div class="form-group">
-              <div class="input-group mb-3">
-                <div class="input-group-append">
-                  <span class="input-group-text"><i class="fa fa-id-card"></i></span>
-                </div>
-                <input type="text" name="name" class="form-control rounded-0" placeholder="Full Name" required>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="input-group mb-3">
-                <div class="input-group-append">
-                  <span class="input-group-text"><i class="fa fa-envelope-open"></i></span>
-                </div>
-                <input type="email" name="email" class="form-control rounded-0" placeholder="Email Address" required>
-                
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="input-group mb-3">
-                <div class="input-group-append">
-                  <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                </div>
-                <input type="tel" name="mobile" class="form-control rounded-0" placeholder="Mobile Number" required>
-              </div>
-            </div>  
-          <div class="form-group">
-            <div class="input-group mb-3">
-              <div class="input-group-append">
-                <span class="input-group-text"><i class="fas fa-user"></i></span>
-              </div>
-            <input type="text" class="form-control rounded-0" placeholder="UserName" required>
-            </div>
-          </div>
-        </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Update Profile</button>
-        </div>
       </div>
-    </div>
-  </div>
 
-  <div class="modal fade" id="updatePasswordModal" tabindex="-1" role="dialog" aria-labelledby="updatePasswordModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="updatePasswordModalLabel">Update Your Password</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="recipient-name" class="col-form-label">Old Password :</label>
-              <input type="password" class="form-control" id="recipient-name">
-            </div>
-            <div class="form-group">
-              <label for="recipient-name" class="col-form-label">New Password :</label>
-              <input type="password" class="form-control" id="recipient-name">
-            </div>
-            <div class="form-group">
-              <label for="recipient-name" class="col-form-label">Retype Password :</label>
-              <input type="password" class="form-control" id="recipient-name">
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Reset Password</button>
-        </div>
-      </div>
     </div>
-  </div>

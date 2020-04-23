@@ -3,7 +3,7 @@
       <div class="col s12 m6 l6 mx-auto login-box">
         <!-- form card login -->
         <div class="card rounded">
-          <h5 class="card-panel center-align white-text teal lighten-2">
+          <h5 class="card-panel hoverable center-align white-text teal lighten-2">
             MEMBER LOGIN
           </h5>
           <div class="card-content">
@@ -33,7 +33,7 @@
             <div class="row ext-links">
               <div class="col center-align s12">
                 <span class="margin medium-small col s6 m6 l6">Don't have an account? <a (click)="registerRoute()">Sign Up Here</a></span>
-                <span class="margin right-align medium-small col s5 m5 l5 modal-trigger"><a href="#forgetPasswordModal" class="modal-trigger">Forgot password?</a></span> 
+                <span class="margin right-align medium-small col s5 m5 l5"><a class="modal-trigger" href="#forgetPasswordModal">Forgot password?</a></span> 
               </div>
             </div>
           </div>
@@ -42,16 +42,12 @@
       </div>
     </div>
 </div>
-<div class="modal fade" id="forgetPasswordModal" tabindex="-1" role="dialog" aria-labelledby="forgetPasswordModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<div class="modal" id="forgetPasswordModal">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="forgetPasswordModalLabel">Forget Your Password?</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+        <button type="button" class="right modal-close">
+          &times;
         </button>
-      </div>
-      <div class="modal-body">
+        <h5 class="modal-title" id="forgetPasswordModalLabel">Forget Your Password?</h5>
         <p>Don't Worry. Resetting your password is easy! Just Tell us Email Address you registered with us.</p>
         <form>
           <div class="form-group">
@@ -59,11 +55,10 @@
             <input type="text" class="form-control" id="recipient-name">
           </div>
         </form>
-      </div>
+      
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Reset Password</button>
+        <button type="button" class="waves-effect waves-green btn-small btn-flat white">Reset Password</button>
+        <button type="button" class="waves-effect waves-red btn-small btn-flat white modal-close" data-dismiss="modal">Close</button>
       </div>
     </div>
-  </div>
 </div>

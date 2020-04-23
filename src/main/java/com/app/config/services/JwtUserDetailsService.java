@@ -1,6 +1,8 @@
 package com.app.config.services;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -27,11 +29,14 @@ public class JwtUserDetailsService implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		logger.debug("Getting User with Name:{}",username);
-		User user = userRepository.findByUsername(username);
-		if (user == null) {
+		Optional<List<User>> userListOpt = userRepository.findByUsernameOrEmail(username,username);
+		
+		if (!userListOpt.isPresent()) {
 			throw new UsernameNotFoundException("User not found with username: " + username);
 		}
-		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), new ArrayList<>());
+		
+		User user = userListOpt.get().get(0);
+		return new org.springframework.security.core.userdetails.User(user .getUsername(), user.getPassword(), new ArrayList<>());
 	}
 	
 	public User save(User user) {

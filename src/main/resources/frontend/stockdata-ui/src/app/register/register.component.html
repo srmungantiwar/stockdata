@@ -1,20 +1,16 @@
-<div class="py-5 container">
+<div class="container">
     <div class="row">
-      <div class="col-md-6 mx-auto">
-        <span class="anchor" id="formLogin"></span>
-        
+      <div class="col s12 m6 l6 mx-auto registration-box">
         <!-- form card login -->
-        <div class="card rounded shadow-lg bg-white">
-          <div class="card-header text-white bg-secondary">
-            <h5 class="card-title">Register for an Account</h5>
-          </div>
-          <div class="card-body">
+        <div class="card rounded">
+          <h5 class="card-panel center-align white-text teal lighten-2">
+            MEMBER REGISTRATION
+          </h5>
+          <div class="card-content">
             <form class="form" #userForm="ngForm">
                 <div class="form-group">
-                  <div class="input-group mb-3">
-                    <div class="input-group-append">
-                      <span class="input-group-text"><i class="fa fa-id-card"></i></span>
-                    </div>
+                  <div class="input-field col s6">
+                    <i class="material-icons prefix">person</i>
                     <input type="text" [(ngModel)]="registerUserData.name" #name="ngModel" [class.is-invalid]="name.invalid && name.touched" name="name" class="form-control rounded-0" placeholder="Full Name" required>
                     <div *ngIf="name.errors && (name.invalid && name.touched)">
                       <small class="text-danger" *ngIf="name.errors.required">Name is required!</small>
@@ -22,10 +18,8 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <div class="input-group mb-3">
-                    <div class="input-group-append">
-                      <span class="input-group-text"><i class="fa fa-envelope-open"></i></span>
-                    </div>
+                  <div class="input-field col s6">
+                    <i class="material-icons prefix">email</i>
                     <input type="email" [(ngModel)]="registerUserData.email" pattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #email="ngModel" [class.is-invalid]="email.invalid && email.touched" name="email" class="form-control rounded-0" placeholder="Email Address" required>
                     <div *ngIf="email.errors && (email.invalid && email.touched)">
                       <small class="text-danger" *ngIf="email.errors.required">Email Address is required!</small>
@@ -34,10 +28,8 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <div class="input-group mb-3">
-                    <div class="input-group-append">
-                      <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                    </div>
+                  <div class="input-field col s6">
+                    <i class="material-icons prefix">local_phone</i>
                     <input type="tel" [(ngModel)]="registerUserData.mobile" pattern = "^\d{10}$" #mobile="ngModel" [class.is-invalid]="mobile.invalid && mobile.touched" name="mobile" class="form-control rounded-0" placeholder="Mobile Number" required>
                     <div *ngIf="mobile.errors && (mobile.invalid && mobile.touched)">
                       <small class="text-danger" *ngIf="mobile.errors.required">Phone number is required!</small>
@@ -45,46 +37,43 @@
                     </div> 
                   </div>
                 </div>  
-              <div class="form-group">
-                <div class="input-group mb-3">
-                  <div class="input-group-append">
-                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <div class="form-group">
+                  <div class="input-field col s6">
+                    <i class="material-icons prefix">account_box</i>
+                    <input type="text" [(ngModel)]="registerUserData.username"  name="username" #username="ngModel" [class.is-invalid]="username.invalid && username.touched" class="form-control rounded-0" placeholder="UserName" required>
+                    <div *ngIf="username.errors && (username.invalid && username.touched)">
+                      <span class="helper-text" data-error="wrong" data-success="right" *ngIf="username.errors.required">UserName is required!</span>
+                    </div>
                   </div>
-                <input type="text" [(ngModel)]="registerUserData.username"  name="username" #username="ngModel" [class.is-invalid]="username.invalid && username.touched" class="form-control rounded-0" placeholder="UserName" required>
-                <div *ngIf="username.errors && (username.invalid && username.touched)">
-                  <small class="text-danger" *ngIf="username.errors.required">UserName is required!</small>
                 </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="input-group mb-3">
-                  <div class="input-group-append">
-                    <span class="input-group-text"><i class="fa fa-key"></i></span>
+                <div class="form-group">
+                  <div class="input-field col s6">
+                    <i class="material-icons prefix">vpn_key</i>
+                    <input type="password" [(ngModel)]="registerUserData.password" name="password" #password="ngModel" [class.is-invalid]="password.invalid && password.touched" class="form-control rounded-0" placeholder="Password"  required>
+                    <div *ngIf="password.errors && (password.invalid && password.touched)">
+                      <small class="text-danger" *ngIf="password.errors.required">Password is required!</small>
+                    </div>
                   </div>
-                <input type="password" [(ngModel)]="registerUserData.password" name="password" #password="ngModel" [class.is-invalid]="password.invalid && password.touched" class="form-control rounded-0" placeholder="Password"  required>
-                <div *ngIf="password.errors && (password.invalid && password.touched)">
-                  <small class="text-danger" *ngIf="password.errors.required">Password is required!</small>
                 </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="input-group mb-3">
-                  <div class="input-group-append">
-                    <span class="input-group-text"><i class="fa fa-key"></i></span>
+                <div class="form-group">
+                  <div class="input-field col s6">
+                    <i class="material-icons prefix">vpn_key</i>
+                    <input type="password" [(ngModel)]="registerUserData.cpassword" name="cpassword" #cpassword="ngModel" class="form-control rounded-0" placeholder="Retype Password" required>
                   </div>
-                <input type="password" [(ngModel)]="registerUserData.cpassword" name="cpassword" #cpassword="ngModel" class="form-control rounded-0" placeholder="Retype Password" required>
-              </div>
-              </div>
+                </div>
               <button type="button" [disabled]="userForm.form.invalid" (click)="registerUser()" class="btn btn-success float-right">Register</button>
               <div class="row"  *ngIf="showMsg">
-                <div class="col-xs-12">
-                  <p class="alert alert-success">
-                      <strong>Registration Success!</strong> Please click here to <a (click)="routeLogin()" class="text-primary">Login</a>!.
-                  </p>
-                </div>
                 
+                  <div class="col s12 left-align">
+                    <span class="margin medium-small col s12 m12 l12"><strong>Registration Success!</strong> Please click here to <a (click)="routeLogin()" >Login</a>!.</span>
+                  </div>
               </div>
-              <div class="row" *ngIf="!showMsg">Already have an account? <a (click)="routeLogin()" class="pl-2 text-primary">Login here</a></div>
+              <div class="row ext-links" *ngIf="!showMsg">
+                <div class="col left-align s12">
+                  <span class="margin medium-small col s12 m12 l12">Already have an account? <a (click)="routeLogin()">Login here</a></span>
+                </div>
+              </div>
+              <!-- <div class="row" *ngIf="!showMsg">Already have an account? <a (click)="routeLogin()" class="pl-2 text-primary">Login here</a></div> -->
             </form>
           </div>
           <!--/card-block-->
